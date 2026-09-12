@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pawslygo | On-Demand Pet Grooming Marketplace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                        },
+                        accent: {
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans antialiased">
+
+    <!-- Navigation -->
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <span class="text-2xl font-black tracking-tight text-brand-600">Pawsly<span class="text-accent-500">go</span></span>
+                <span class="text-xs font-semibold uppercase tracking-widest px-2 py-0.5 bg-brand-50 text-brand-700 rounded-full border border-brand-100">DFW Metroplex</span>
+            </div>
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-slate-600">
+                <a href="#services" class="hover:text-brand-600 transition">Services & Pricing</a>
+                <a href="#calculator" class="hover:text-brand-600 transition">Instant Estimator</a>
+                <a href="#passport" class="hover:text-brand-600 transition">Pet Passport™</a>
+                <a href="#groomers" class="hover:text-brand-600 transition">Join as a Groomer (80%+ Payout)</a>
+            </div>
+            <button onclick="toggleModal()" class="bg-brand-600 text-white px-4 py-2 rounded-xl text-sm font-bold shadow-md hover:bg-brand-700 transition">Book Now</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative bg-gradient-to-b from-brand-50 to-white py-20 lg:py-28 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="inline-block bg-accent-500/10 text-accent-600 font-bold text-xs uppercase tracking-wider px-3 py-1 rounded-full mb-4 border border-accent-500/20">DFW's Premier On-Demand Grooming Platform</span>
+                    <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-6">Professional Pet Grooming Delivered to Your Doorstep.</h1>
+                    <p class="text-lg text-slate-600 mb-8 leading-relaxed">Choose between full-service mobile grooming vans, in-home house calls, or local neighborhood hubs. Vetted providers, transparent pricing, and zero salon stress.</p>
+                    <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+                        <button onclick="toggleModal()" class="bg-brand-600 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:bg-brand-700 transition text-center">Schedule Grooming</button>
+                        <a href="#calculator" class="bg-white text-slate-700 border border-slate-300 px-6 py-4 rounded-xl font-semibold text-lg hover:bg-slate-50 transition text-center">Calculate Rate</a>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-3xl shadow-xl border border-slate-100 relative">
+                    <div class="absolute -top-3 -right-3 bg-accent-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow">Live Match Active</div>
+                    <div class="flex items-center space-x-4 pb-4 border-b border-slate-100">
+                        <div class="w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center text-brand-600 font-bold text-lg">🐾</div>
+                        <div>
+                            <h3 class="font-bold text-slate-800">Portable Pet Passport™</h3>
+                            <p class="text-xs text-slate-500">Verified Grooming & Behavioral Safety History</p>
+                        </div>
+                    </div>
+                    <div class="py-4 space-y-3">
+                        <div class="flex justify-between text-sm"><span class="text-slate-500">Pet Name:</span><span class="font-semibold text-slate-700">Milo (Golden Retriever)</span></div>
+                        <div class="flex justify-between text-sm"><span class="text-slate-500">Sensitivities:</span><span class="font-semibold text-slate-700">Paw handling (Dryer low heat)</span></div>
+                        <div class="flex justify-between text-sm"><span class="text-slate-500">Verified Health:</span><span class="font-semibold text-emerald-600">✓ Up to Date (Vaccines Cleared)</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Interactive Pricing Estimator -->
+    <section id="calculator" class="py-16 bg-white border-y border-slate-200">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-slate-900">Instant Estimate Calculator</h2>
+                <p class="text-slate-600 mt-2">Transparent pricing powered by the Pawslygo marketplace model.</p>
+            </div>
+            
+            <div class="bg-slate-50 p-6 md:p-8 rounded-3xl border border-slate-200 grid md:grid-cols-2 gap-8">
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Service Package</label>
+                        <select id="calc-service" onchange="calculateTotal()" class="w-full bg-white border border-slate-300 rounded-xl p-3 text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-brand-500">
+                            <option value="65">Core Care Bath & Brush ($65)</option>
+                            <option value="95" selected>The Full Groom & Style ($95)</option>
+                            <option value="115">Specialty Care (Senior / High-Anxiety) ($115)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Delivery Option</label>
+                        <select id="calc-delivery" onchange="calculateTotal()" class="w-full bg-white border border-slate-300 rounded-xl p-3 text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-brand-500">
+                            <option value="25" selected>Mobile Grooming Van (Curb) (+$25)</option>
+                            <option value="15">House Call (In-Home) (+$15)</option>
+                            <option value="0">Approved Host Station / Hub (+$0)</option>
+                        </select>
+                    </div>
+
+                    <div class="flex items-center justify-between p-4 bg-white rounded-xl border border-slate-200">
+                        <div>
+                            <div class="font-bold text-slate-800 text-sm">Pawslygo Plus Member</div>
+                            <div class="text-xs text-slate-500">Waives the $7.99 Trust & Safety Fee</div>
+                        </div>
+                        <input type="checkbox" id="calc-plus" onchange="calculateTotal()" class="w-5 h-5 text-brand-600 rounded focus:ring-brand-500">
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Estimated Summary</h3>
+                        <div class="space-y-2 text-sm border-b border-slate-100 pb-4">
+                            <div class="flex justify-between"><span class="text-slate-600">Base Service:</span><span id="out-base" class="font-semibold">$95.00</span></div>
+                            <div class="flex justify-between"><span class="text-slate-600">Delivery Charge:</span><span id="out-delivery" class="font-semibold">$25.00</span></div>
+                            <div class="flex justify-between"><span class="text-slate-600">Trust & Safety Fee:</span><span id="out-fee" class="font-semibold text-brand-600">$7.99</span></div>
+                        </div>
+                    </div>
+                    <div class="pt-4">
+                        <div class="flex justify-between items-baseline mb-4">
+                            <span class="text-base font-bold text-slate-800">Total Estimated:</span>
+                            <span id="out-total" class="text-3xl font-black text-brand-600">$127.99</span>
+                        </div>
+                        <button onclick="toggleModal()" class="w-full bg-brand-600 text-white py-3 rounded-xl font-bold shadow hover:bg-brand-700 transition">Proceed to Booking</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Provider Recruitment Section -->
+    <section id="groomers" class="py-20 bg-slate-900 text-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-accent-500 font-bold text-xs uppercase tracking-widest">Industry-Leading Payout Model</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold mt-2 mb-6">Earn 80% to 82% Payout on Every Groom.</h2>
+                    <p class="text-slate-300 mb-6 leading-relaxed">Unlike traditional brick-and-mortar salons that take 50% or more of your revenue, Pawslygo prioritizes groomer earnings. Keep 80-82% of your base payout plus 100% of your tips while maintaining your own schedule across DFW.</p>
+                    <ul class="space-y-3 text-slate-300 mb-8">
+                        <li class="flex items-center"><span class="text-emerald-400 mr-2">✓</span> Flexible radius control & customized animal preference filters</li>
+                        <li class="flex items-center"><span class="text-emerald-400 mr-2">✓</span> Transparent safety history before accepting any booking</li>
+                        <li class="flex items-center"><span class="text-emerald-400 mr-2">✓</span> Weekly payouts or direct instant transfers via Stripe Connect</li>
+                    </ul>
+                    <button onclick="alert('Provider Onboarding Application Opening Soon for DFW Groomers!')" class="bg-accent-500 text-slate-900 px-6 py-3 rounded-xl font-bold hover:bg-accent-600 transition">Apply as a Provider</button>
+                </div>
+                <div class="bg-slate-800 p-8 rounded-3xl border border-slate-700">
+                    <h3 class="text-xl font-bold mb-4 border-b border-slate-700 pb-3">Provider Earnings Comparison</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span>Traditional Salons (45-50% Payout)</span>
+                                <span class="text-slate-400">$50.00 on $100 Service</span>
+                            </div>
+                            <div class="w-full bg-slate-700 h-3 rounded-full overflow-hidden">
+                                <div class="bg-slate-500 h-full" style="width: 50%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <span class="font-bold text-emerald-400">Pawslygo Platform (80-82% Payout)</span>
+                                <span class="font-bold text-emerald-400">$82.00 on $100 Service</span>
+                            </div>
+                            <div class="w-full bg-slate-700 h-3 rounded-full overflow-hidden">
+                                <div class="bg-emerald-500 h-full" style="width: 82%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Booking Prototype -->
+    <div id="booking-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white max-w-lg w-full rounded-3xl p-6 md:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="toggleModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
+            <h3 class="text-2xl font-extrabold text-slate-900 mb-2">Book Your Groom</h3>
+            <p class="text-sm text-slate-500 mb-6">Pawslygo On-Demand DFW Service</p>
+            
+            <form onsubmit="event.preventDefault(); alert('Booking requested! Our matching engine will alert available DFW providers.'); toggleModal();" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Pet Owner Name</label>
+                    <input type="text" required placeholder="Jane Doe" class="w-full border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-brand-500 outline-none">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Pet Name</label>
+                        <input type="text" required placeholder="Buddy" class="w-full border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-brand-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Breed & Weight</label>
+                        <input type="text" required placeholder="Poodle (25 lbs)" class="w-full border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-brand-500 outline-none">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-600 mb-1">DFW Service Address / ZIP</label>
+                    <input type="text" required placeholder="Dallas, TX 75201" class="w-full border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-brand-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Behavioral Notes / Disclosures</label>
+                    <textarea placeholder="Any medical conditions, bite history, or specific triggers?" class="w-full border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-brand-500 outline-none h-20"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-brand-600 text-white font-bold py-3 rounded-xl hover:bg-brand-700 transition">Confirm Booking Request</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Script Section -->
+    <script>
+        function calculateTotal() {
+            const base = parseFloat(document.getElementById('calc-service').value);
+            const delivery = parseFloat(document.getElementById('calc-delivery').value);
+            const isPlus = document.getElementById('calc-plus').checked;
+            
+            const fee = isPlus ? 0.00 : 7.99;
+            const total = base + delivery + fee;
+
+            document.getElementById('out-base').innerText = '$' + base.toFixed(2);
+            document.getElementById('out-delivery').innerText = '$' + delivery.toFixed(2);
+            document.getElementById('out-fee').innerText = isPlus ? 'FREE (Plus)' : '$7.99';
+            document.getElementById('out-total').innerText = '$' + total.toFixed(2);
+        }
+
+        function toggleModal() {
+            const modal = document.getElementById('booking-modal');
+            modal.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
